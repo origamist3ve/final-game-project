@@ -10,7 +10,7 @@ public class Player2Behaviour : MonoBehaviour
     public float jump_force = 5;
     private bool grounded = true;
 
-    private bool magnetActive = false;
+    private bool magnetActive = true;
 
 
     // Start is called before the first frame update
@@ -53,6 +53,12 @@ public class Player2Behaviour : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
 
+        // if left left shift is pressed, activate/deactivate magnet
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            magnetActive = !magnetActive;
+            magnetCollider.SetActive(magnetActive);
+        }
 
     }
 

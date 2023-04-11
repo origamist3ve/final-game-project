@@ -10,7 +10,7 @@ public class Player1Behaviour : MonoBehaviour
     public float jump_force = 5;
     private bool grounded = true;
 
-    private bool magnetActive = false;
+    private bool magnetActive = true;
 
 
     // Start is called before the first frame update
@@ -54,6 +54,14 @@ public class Player1Behaviour : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
         
+        
+        // if E is pressed, activate/deactivate magnet
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            magnetActive = !magnetActive;
+            magnetCollider.SetActive(magnetActive);
+        }
+
         
     }
 
