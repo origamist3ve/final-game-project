@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player2Behaviour : MonoBehaviour
 {
     public Camera CameraPlayer2;
+    public GameObject magnetCollider;
     public float speed = 5;
     public float jump_force = 5;
     private bool grounded = true;
 
     private bool magnetActive = false;
-    private bool isPositivelyCharged = true;
 
 
     // Start is called before the first frame update

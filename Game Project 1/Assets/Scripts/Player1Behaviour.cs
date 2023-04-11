@@ -11,7 +11,6 @@ public class Player1Behaviour : MonoBehaviour
     private bool grounded = true;
 
     private bool magnetActive = false;
-    private bool isPositivelyCharged = false;
 
 
     // Start is called before the first frame update
