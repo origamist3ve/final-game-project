@@ -2,67 +2,83 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player1Behaviour : MonoBehaviour
 {
     public Camera CameraPlayer1;
-    public GameObject magnetCollider;
     public float speed = 5;
     public float jump_force = 5;
+
+
+    public GameObject magnetCollider;
+    private bool magnetActive = true;
+
+    // Controls
+    private Dictionary<string, KeyCode> keyCodes = new Dictionary<string, KeyCode>();
+
     private bool grounded = true;
 
-    private bool magnetActive = true;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // set up movement controls
+        keyCodes.Add("up", KeyCode.W);
+        keyCodes.Add("left", KeyCode.A);
+        keyCodes.Add("down", KeyCode.S);
+        keyCodes.Add("right", KeyCode.D);
+        keyCodes.Add("magnet", KeyCode.E);
 
+        // Deactivate magnet
+        magnetActive = !magnetActive;
+        magnetCollider.SetActive(magnetActive);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // WASD movement
-        
         // Jump
-        if (Input.GetKey(KeyCode.W) && grounded)
+        if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
         }
 
         // Down
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(keyCodes["down"]))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, -speed);
         }
 
         // Left
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(keyCodes["left"]))
         {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
         }
 
         // Right
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(keyCodes["right"]))
         {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
         }
 
         // Stop
-        if (!(Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D)))
+        if (!(Input.GetKey(keyCodes["left"]) ^ Input.GetKey(keyCodes["right"])))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
         }
-        
-        
+
+
         // if E is pressed, activate/deactivate magnet
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(keyCodes["magnet"]))
         {
             magnetActive = !magnetActive;
             magnetCollider.SetActive(magnetActive);
         }
 
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
