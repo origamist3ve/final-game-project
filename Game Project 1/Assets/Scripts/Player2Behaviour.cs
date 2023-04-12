@@ -26,7 +26,12 @@ public class Player2Behaviour : MonoBehaviour
         keyCodes.Add("down", KeyCode.DownArrow);
         keyCodes.Add("right", KeyCode.RightArrow);
         keyCodes.Add("magnet", KeyCode.RightShift);
-        keyCodes.Add("aim", KeyCode.RightControl);
+        #if UNITY_STANDALONE_OSX
+        keyCodes.Add("aim", KeyCode.RightCommand);
+        #else
+                keyCodes.Add("aim", KeyCode.RightControl);
+        #endif
+
 
         magnetActive = !magnetActive;
         magnetCollider.SetActive(magnetActive);
