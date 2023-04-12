@@ -47,7 +47,6 @@ public class MagnetBehaviour : MonoBehaviour
         }
     }
 
-    // On 2d collision stay
     void OnTriggerStay2D(Collider2D collision)
     {
         // Check if the object is charged

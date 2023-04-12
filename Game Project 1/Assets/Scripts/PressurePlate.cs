@@ -14,7 +14,6 @@ public class PressurePlate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // save starting position
         starting_position = door.transform.position;
     }
 

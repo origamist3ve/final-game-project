@@ -9,7 +9,6 @@ public class Door : MonoBehaviour
     private int players_entered = 0;
 
 
-    // On collision enter if tag is Player load Level 1
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
