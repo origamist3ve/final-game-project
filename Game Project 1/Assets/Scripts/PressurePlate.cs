@@ -7,6 +7,7 @@ public class PressurePlate : MonoBehaviour
 {
     public GameObject door;
     public GameObject stopping_point;
+    public int direction = 1;
 
     private bool active;
     private Vector2 starting_position;
@@ -30,13 +31,13 @@ public class PressurePlate : MonoBehaviour
             // move the door up to the stopping point, then stop
             if (door.transform.position.y < stopping_point.transform.position.y)
             {
-                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 0.01f, door.transform.position.z);
+                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 0.01f*direction, door.transform.position.z);
             }
         }
         else
         {
             if (door.transform.position.y > starting_position.y+0.1)
-            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y - 0.1f, door.transform.position.z);
+            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y - 0.1f*direction, door.transform.position.z);
         }
     }
 

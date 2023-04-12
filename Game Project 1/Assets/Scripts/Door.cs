@@ -8,7 +8,6 @@ public class Door : MonoBehaviour
 {
     private int players_entered = 0;
 
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
