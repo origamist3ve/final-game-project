@@ -58,10 +58,9 @@ public class MagnetBehaviour : MonoBehaviour
             // If distance is less than distance_threshhold, then the force is 0
             if (Vector2.Distance(magnetCenter, collision.gameObject.transform.position) > distance_threshhold)
             {
-                // Modify the force calculation to take into account center offset
+                // Modifying the force calculation to take into account center offset
                 Vector2 force = CalculateMagneticForce(magnetCenter, charge, collision.gameObject.transform.position, collision.gameObject.GetComponent<Charged>().charge, 1);
 
-                // Log force
                 Debug.Log(force);
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(force);
             }
