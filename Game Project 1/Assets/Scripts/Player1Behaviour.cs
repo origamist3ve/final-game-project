@@ -9,6 +9,7 @@ public class Player1Behaviour : MonoBehaviour
     public float jump_force = 5;
 
     public GameObject magnetCollider;
+    private GameObject magnetPivot; // To rotate the magnet around the player without scaling issues
     private bool magnetActive = true;
 
     public float rotationSpeed = 90; // Speed of rotation in degrees per second
@@ -34,6 +35,15 @@ public class Player1Behaviour : MonoBehaviour
 
         magnetActive = !magnetActive;
         magnetCollider.SetActive(magnetActive);
+
+        // Create a new empty GameObject as a child of the player
+        magnetPivot = new GameObject("MagnetPivot");
+        magnetPivot.transform.SetParent(transform);
+        magnetPivot.transform.localPosition = Vector3.zero;
+        magnetPivot.transform.localRotation = Quaternion.identity;
+
+        // Make magnetPivot the parent of the magnetCollider
+        magnetCollider.transform.SetParent(magnetPivot.transform);
     }
 
     void Update()
@@ -66,12 +76,12 @@ public class Player1Behaviour : MonoBehaviour
         {
             if (Input.GetKey(keyCodes["left"]))
             {
-                magnetCollider.transform.RotateAround(transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
+                magnetPivot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(keyCodes["right"]))
             {
-                magnetCollider.transform.RotateAround(transform.position, Vector3.forward, -rotationSpeed * Time.deltaTime);
+                magnetPivot.transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
             }
         }
 

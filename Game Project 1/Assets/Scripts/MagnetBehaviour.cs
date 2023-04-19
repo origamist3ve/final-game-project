@@ -7,10 +7,10 @@ public class MagnetBehaviour : MonoBehaviour
     public float charge;
     public float distanceExponent;  // Change this value to modify the rate of change of the force with respect to the distance
     public float distance_threshhold;
+    public GameObject centerObject; // Add this line to create a public GameObject
 
     private float center_x_offset;
     private float center_y_offset;
-
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class MagnetBehaviour : MonoBehaviour
             float halfWidth = spriteRenderer.bounds.size.x / 2;
             float halfHeight = spriteRenderer.bounds.size.y / 2;
 
-            if (transform.parent.localScale.x > 0)
+            if (transform.parent.parent.localScale.x > 0)
             {
                 center_x_offset = -halfWidth;
                 center_y_offset = 0;
@@ -45,6 +45,12 @@ public class MagnetBehaviour : MonoBehaviour
                 center_x_offset = halfWidth;
                 center_y_offset = 0;
             }
+        }
+
+        // Set the centerObject position according to the offset
+        if (centerObject != null)
+        {
+            centerObject.transform.position = new Vector2(transform.position.x + center_x_offset, transform.position.y + center_y_offset);
         }
     }
 

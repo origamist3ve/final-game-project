@@ -1,0 +1,3 @@
+Magnets:
+   - center_offset is calculated by taking midpoint of y and x. However, when the rectangle is tilted, midpoint of y is no longer its side
+   - player's x scale doesn't change when rotating the magnet around in aim mode, whilst the offset is calculated using the scale of the player. Therefore, when rotated 180 degrees, the midpoint is now at the oposite side of the player.
