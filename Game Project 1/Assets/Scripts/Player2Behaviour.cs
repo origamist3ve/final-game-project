@@ -17,6 +17,10 @@ public class Player2Behaviour : MonoBehaviour
     private Dictionary<string, KeyCode> keyCodes = new Dictionary<string, KeyCode>();
 
     private bool grounded = true;
+    public float groundedThreshold = 0.7f;
+    private int groundedCounter = 0;
+    private HashSet<GameObject> groundedObjects = new HashSet<GameObject>();
+
     private bool aimMode = false;
 
     void Start()
@@ -27,14 +31,10 @@ public class Player2Behaviour : MonoBehaviour
         keyCodes.Add("right", KeyCode.RightArrow);
         keyCodes.Add("magnet", KeyCode.RightShift);
         #if UNITY_STANDALONE_OSX
-        keyCodes.Add("aim", KeyCode.RightCommand);
+            keyCodes.Add("aim", KeyCode.RightCommand);
         #else
-                keyCodes.Add("aim", KeyCode.RightControl);
+            keyCodes.Add("aim", KeyCode.RightControl);
         #endif
-
-
-        magnetActive = !magnetActive;
-        magnetCollider.SetActive(magnetActive);
     }
 
     void Update()
@@ -95,17 +95,38 @@ public class Player2Behaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
         {
-            grounded = true;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal.y > groundedThreshold)
+                {
+                    if (groundedObjects.Add(collision.gameObject))
+                    {
+                        groundedCounter++;
+                    }
+                    break;
+                }
+            }
         }
+        UpdateGroundedStatus();
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
         {
-            grounded = false;
+            if (groundedObjects.Remove(collision.gameObject))
+            {
+                groundedCounter--;
+            }
         }
+        UpdateGroundedStatus();
     }
+
+    private void UpdateGroundedStatus()
+    {
+        grounded = groundedCounter > 0;
+    }
+
 }

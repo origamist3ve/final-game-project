@@ -8,8 +8,9 @@ public class MagnetBehaviour : MonoBehaviour
     public float distanceExponent;  // Change this value to modify the rate of change of the force with respect to the distance
     public float distance_threshhold;
 
-    public float center_x_offset;
-    public float center_y_offset;
+    private float center_x_offset;
+    private float center_y_offset;
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class MagnetBehaviour : MonoBehaviour
         if (collision.gameObject.GetComponent<Charged>() != null)
         {
             Vector2 magnetCenter = new Vector2(transform.position.x + center_x_offset, transform.position.y + center_y_offset);
+
 
             // If distance is less than distance_threshhold, then the force is 0
             if (Vector2.Distance(magnetCenter, collision.gameObject.transform.position) > distance_threshhold)

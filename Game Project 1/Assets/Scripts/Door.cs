@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    public string nextScene;
     private int players_entered = 0;
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -17,7 +18,7 @@ public class Door : MonoBehaviour
             players_entered++;
             if (players_entered == 2)
             {
-                SceneManager.LoadScene("Level 1");
+                SceneManager.LoadScene(nextScene);
             }
 
         }
