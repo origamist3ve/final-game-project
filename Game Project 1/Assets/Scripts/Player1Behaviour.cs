@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player1Behaviour : MonoBehaviour
 {
+
+    public AudioClip jumpSound;         // Added
+    public AudioClip onSound;         // Added
+
+    AudioSource src;         // Added
+
     public Camera CameraPlayer1;
     public float speed = 5;
     public float jump_force = 5;
@@ -26,6 +32,8 @@ public class Player1Behaviour : MonoBehaviour
 
     void Start()
     {
+        src = GetComponent<AudioSource>();      // Added
+
         keyCodes.Add("up", KeyCode.W);
         keyCodes.Add("left", KeyCode.A);
         keyCodes.Add("down", KeyCode.S);
@@ -51,6 +59,7 @@ public class Player1Behaviour : MonoBehaviour
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
+            src.PlayOneShot(jumpSound);       // added
         }
 
         if (Input.GetKey(keyCodes["down"]))
@@ -92,6 +101,7 @@ public class Player1Behaviour : MonoBehaviour
 
         if (Input.GetKeyDown(keyCodes["magnet"]))
         {
+            src.PlayOneShot(onSound);       // added
             magnetActive = !magnetActive;
             magnetCollider.SetActive(magnetActive);
         }
