@@ -50,7 +50,6 @@ public class Player2Behaviour : MonoBehaviour
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
-            src.PlayOneShot(jumpSound);       // added
         }
 
         if (Input.GetKey(keyCodes["down"]))
