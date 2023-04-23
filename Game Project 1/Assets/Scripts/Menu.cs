@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Menu : MonoBehaviour
@@ -9,7 +7,7 @@ public class Menu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 2");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
         }
     }
 }
