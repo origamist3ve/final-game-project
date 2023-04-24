@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Player2Behaviour : MonoBehaviour
 {
-
     public AudioClip jumpSound;         // Added
     public AudioClip onSound;         // Added
 
     AudioSource src;         // Added
+
 
     public Camera CameraPlayer1;
     public float speed = 5;
     public float jump_force = 5;
 
     public GameObject magnetCollider;
-    private GameObject magnetPivot; // To rotate the magnet around the player without scaling issues
     private bool magnetActive = true;
 
     public float rotationSpeed = 90; // Speed of rotation in degrees per second
@@ -44,32 +43,13 @@ public class Player2Behaviour : MonoBehaviour
         #else
                 keyCodes.Add("aim", KeyCode.RightControl);
         #endif
-
-        magnetActive = !magnetActive;
-        magnetCollider.SetActive(magnetActive);
-
-        // Create a new empty GameObject as a child of the player
-        magnetPivot = new GameObject("MagnetPivot");
-        magnetPivot.transform.SetParent(transform);
-        magnetPivot.transform.localPosition = Vector3.zero;
-        magnetPivot.transform.localRotation = Quaternion.identity;
-
-        // Make magnetPivot the parent of the magnetCollider
-        magnetCollider.transform.SetParent(magnetPivot.transform);
     }
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 2");
-        }
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
-            src.PlayOneShot(jumpSound);       // added
         }
 
         if (Input.GetKey(keyCodes["down"]))
@@ -95,12 +75,12 @@ public class Player2Behaviour : MonoBehaviour
         {
             if (Input.GetKey(keyCodes["left"]))
             {
-                magnetPivot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+                magnetCollider.transform.RotateAround(transform.position, Vector3.forward, rotationSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(keyCodes["right"]))
             {
-                magnetPivot.transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
+                magnetCollider.transform.RotateAround(transform.position, Vector3.forward, -rotationSpeed * Time.deltaTime);
             }
         }
 
