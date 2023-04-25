@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62433d16dc464b64baa711ab8a22a72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Menu
+  nextScene: Level 3
 --- !u!114 &1204881676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,7 +2887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2296562107414643416, guid: 4e767853746252f4f997e499034f3a6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.13
+      value: -3.21
       objectReference: {fileID: 0}
     - target: {fileID: 2296562107414643416, guid: 4e767853746252f4f997e499034f3a6c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3069,7 +3069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8258046238893883877, guid: bac8cefae32c04983ac334f19b25cb01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.14
+      value: -3.22
       objectReference: {fileID: 0}
     - target: {fileID: 8258046238893883877, guid: bac8cefae32c04983ac334f19b25cb01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3106,6 +3106,10 @@ PrefabInstance:
     - target: {fileID: 8258046238893883878, guid: bac8cefae32c04983ac334f19b25cb01, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8258046240127271191, guid: bac8cefae32c04983ac334f19b25cb01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bac8cefae32c04983ac334f19b25cb01, type: 3}

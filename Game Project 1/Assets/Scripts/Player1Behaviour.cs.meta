@@ -3,7 +3,11 @@ guid: 7948df2922e123641a20cea39cdd4197
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - jumpSound: {instanceID: 0}
+  - onSound: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
+  - CameraPlayer1: {instanceID: 0}
+  - magnetCollider: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
