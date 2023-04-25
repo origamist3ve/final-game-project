@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 121427599}
   - component: {fileID: 121427598}
   - component: {fileID: 121427597}
+  - component: {fileID: 121427600}
   m_Layer: 0
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -341,6 +342,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121427600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121427596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb447960ce65314cb58c7e348d9c81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Level 1
 --- !u!1 &143696401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2445,7 +2459,6 @@ GameObject:
   - component: {fileID: 2080275672}
   - component: {fileID: 2080275674}
   - component: {fileID: 2080275675}
-  - component: {fileID: 2080275676}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2559,18 +2572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: Level 2
---- !u!114 &2080275676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080275671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb447960ce65314cb58c7e348d9c81a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &301008372222798193
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -528,7 +528,6 @@ GameObject:
   - component: {fileID: 318372520}
   - component: {fileID: 318372519}
   - component: {fileID: 318372518}
-  - component: {fileID: 318372517}
   - component: {fileID: 318372516}
   m_Layer: 0
   m_Name: Door
@@ -563,18 +562,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.125, y: 1.125}
   m_EdgeRadius: 0
---- !u!114 &318372517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318372515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb447960ce65314cb58c7e348d9c81a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &318372518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1628,7 @@ GameObject:
   - component: {fileID: 747121791}
   - component: {fileID: 747121793}
   - component: {fileID: 747121792}
+  - component: {fileID: 747121794}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1718,6 +1706,19 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &747121794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747121790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb447960ce65314cb58c7e348d9c81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Level 3
 --- !u!1 &750735079
 GameObject:
   m_ObjectHideFlags: 0
