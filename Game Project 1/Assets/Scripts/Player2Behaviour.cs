@@ -113,9 +113,14 @@ public class Player2Behaviour : MonoBehaviour
             src.PlayOneShot(onSound);       // added
             magnetActive = !magnetActive;
             magnetCollider.SetActive(magnetActive);
+
+            if (!magnetActive)
+            {
+                aimMode = false;
+            }
         }
 
-        if (Input.GetKeyDown(keyCodes["aim"]))
+        if (Input.GetKeyDown(keyCodes["aim"]) && magnetActive)
         {
             aimMode = !aimMode;
         }
