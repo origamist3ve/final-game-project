@@ -59,6 +59,12 @@ public class Player2Behaviour : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 2");
+        }
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
