@@ -23,18 +23,14 @@ public class Player1Behaviour : MonoBehaviour
     private Dictionary<string, KeyCode> keyCodes = new Dictionary<string, KeyCode>();
 
     private bool grounded = true;
-    private bool running = false;
     public float groundedThreshold = 0.7f;
     private int groundedCounter = 0;
     private HashSet<GameObject> groundedObjects = new HashSet<GameObject>();
 
     private bool aimMode = false;
 
-    private Animator animator;
-
     void Start()
     {
-        animator = GetComponent<Animator>();
         src = GetComponent<AudioSource>();      // Added
 
         keyCodes.Add("up", KeyCode.W);
@@ -59,12 +55,6 @@ public class Player1Behaviour : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level 2");
-        }
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
@@ -82,23 +72,15 @@ public class Player1Behaviour : MonoBehaviour
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
-                if (grounded)
-                {
-                    UpdateRunningStatus(true);
-                }
             }
 
             if (Input.GetKey(keyCodes["right"]))
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
-                if (grounded)
-                {
-                    UpdateRunningStatus(true);
-                }
             }
         }
-        else // aim mode
+        else
         {
             if (Input.GetKey(keyCodes["left"]))
             {
@@ -114,7 +96,6 @@ public class Player1Behaviour : MonoBehaviour
         if (!(Input.GetKey(keyCodes["left"]) ^ Input.GetKey(keyCodes["right"])))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-            UpdateRunningStatus(false);
         }
 
         if (Input.GetKeyDown(keyCodes["magnet"]))
@@ -169,17 +150,6 @@ public class Player1Behaviour : MonoBehaviour
     private void UpdateGroundedStatus()
     {
         grounded = groundedCounter > 0;
-        animator.SetBool("grounded", grounded);
-        if (!grounded)
-        {
-            UpdateRunningStatus(false);
-        }
-    }
-
-    private void UpdateRunningStatus(bool isRunning)
-    {
-        running = isRunning;
-        animator.SetBool("running", running);
     }
 
 }
