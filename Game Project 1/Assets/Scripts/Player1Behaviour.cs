@@ -9,6 +9,7 @@ public class Player1Behaviour : MonoBehaviour
 
     AudioSource src;         // Added
 
+
     public Camera CameraPlayer1;
     public float speed = 5;
     public float jump_force = 5;
