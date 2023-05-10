@@ -25,7 +25,6 @@ public class PressurePlate : MonoBehaviour
     {
         if (active)
         {
-            // move the door up to the stopping point, then stop
             if (door.transform.position.y < stopping_point.transform.position.y)
             {
                 door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 0.01f*direction, door.transform.position.z);
@@ -38,18 +37,16 @@ public class PressurePlate : MonoBehaviour
         }
     }
 
-    // On trigger enter 2d
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        // if tag is 'Box' active = true;
         if (collision.gameObject.tag == "Box")
         {
             active = true;
         }
     }
 
-    // On trigger exit 2d
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Box")

@@ -49,13 +49,11 @@ public class Player1Behaviour : MonoBehaviour
         magnetActive = !magnetActive;
         magnetCollider.SetActive(magnetActive);
 
-        // Create a new empty GameObject as a child of the player
         magnetPivot = new GameObject("MagnetPivot");
         magnetPivot.transform.SetParent(transform);
         magnetPivot.transform.localPosition = Vector3.zero;
         magnetPivot.transform.localRotation = Quaternion.identity;
 
-        // Make magnetPivot the parent of the magnetCollider
         magnetCollider.transform.SetParent(magnetPivot.transform);
 
 

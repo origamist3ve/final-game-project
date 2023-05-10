@@ -3,13 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class Hint : MonoBehaviour
 {
-    /*public tmp text*/
     public TMPro.TextMeshProUGUI player1hints;
     public TMPro.TextMeshProUGUI player2hints;
     public TMPro.TextMeshProUGUI hint_textbox;
     public TMPro.TextMeshProUGUI restart_textbox;
 
-    /* hide hints on start*/
     void Start()
     {
         player1hints.enabled = false;

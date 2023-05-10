@@ -29,12 +29,6 @@ public class MagnetBehaviour : MonoBehaviour
             float halfHeight = spriteRenderer.bounds.size.y / 2;
 
         }
-/*
-        // Set the centerObject position according to the offset
-        if (centerObject != null)
-        {
-            // move the centerObject by half transform.x    
-        }*/
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -52,7 +46,6 @@ public class MagnetBehaviour : MonoBehaviour
                 // If distance is less than distance_threshhold, then the force is 0
                 if (Vector2.Distance(target.transform.position, collision.gameObject.transform.position) > distance_threshhold)
                 {
-                    // Modifying the force calculation to take into account center offset
                     Vector2 force = CalculateMagneticForce(target.transform.position, charge, collision.gameObject.transform.position, collision.gameObject.GetComponent<Charged>().charge, 1);
 
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(force);
