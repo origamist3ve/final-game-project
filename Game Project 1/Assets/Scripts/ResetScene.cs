@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ResetScene : MonoBehaviour
 {
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             // Get the current scene index
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

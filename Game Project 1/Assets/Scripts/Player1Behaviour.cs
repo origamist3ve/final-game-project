@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player1Behaviour : MonoBehaviour
 {
 
-    public AudioClip jumpSound;         // Added
-    public AudioClip onSound;         // Added
+    public AudioClip jumpSound;
+    public AudioClip onSound;
 
-    AudioSource src;         // Added
+    AudioSource src;
 
 
     public Camera CameraPlayer1;
@@ -30,9 +31,13 @@ public class Player1Behaviour : MonoBehaviour
 
     private bool aimMode = false;
 
+
+    private Animator animator;
+    private bool jumping = false;
+
     void Start()
     {
-        src = GetComponent<AudioSource>();      // Added
+        src = GetComponent<AudioSource>();
 
         keyCodes.Add("up", KeyCode.W);
         keyCodes.Add("left", KeyCode.A);
@@ -52,6 +57,9 @@ public class Player1Behaviour : MonoBehaviour
 
         // Make magnetPivot the parent of the magnetCollider
         magnetCollider.transform.SetParent(magnetPivot.transform);
+
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -59,7 +67,10 @@ public class Player1Behaviour : MonoBehaviour
         if (Input.GetKey(keyCodes["up"]) && grounded)
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump_force);
-            src.PlayOneShot(jumpSound);       // added
+            jumping = true;
+            animator.SetBool("jumping", true);
+            src.PlayOneShot(jumpSound);
+
         }
 
         if (Input.GetKey(keyCodes["down"]))
@@ -73,12 +84,14 @@ public class Player1Behaviour : MonoBehaviour
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                animator.SetBool("walking", true);
             }
 
             if (Input.GetKey(keyCodes["right"]))
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                animator.SetBool("walking", true);
             }
         }
         else
@@ -97,12 +110,14 @@ public class Player1Behaviour : MonoBehaviour
         if (!(Input.GetKey(keyCodes["left"]) ^ Input.GetKey(keyCodes["right"])))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+            animator.SetBool("walking", false);
         }
 
         if (Input.GetKeyDown(keyCodes["magnet"]))
         {
-            src.PlayOneShot(onSound);       // added
+            src.PlayOneShot(onSound);
             magnetActive = !magnetActive;
+            animator.SetBool("aiming", magnetActive);
             magnetCollider.SetActive(magnetActive);
             
             if (!magnetActive)
@@ -151,6 +166,21 @@ public class Player1Behaviour : MonoBehaviour
     private void UpdateGroundedStatus()
     {
         grounded = groundedCounter > 0;
+        animator.SetBool("grounded", grounded);
+        if (grounded)
+        {
+            if (jumping)
+            {
+                jumping = false;
+                animator.SetBool("jumping", false);
+            }
+        }
+    }
+
+
+    private void changeAimState(bool state, Vector2 direction)
+    {
+
     }
 
 }
