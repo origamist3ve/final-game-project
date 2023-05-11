@@ -9,5 +9,10 @@ public class Menu : MonoBehaviour
 
             UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            Application.Quit();
+        }
     }
 }

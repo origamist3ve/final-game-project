@@ -658,7 +658,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '''BACKSPACE'' to restart'
+  m_text: '''BACKSPACE'' to res
+
+    ''ESC'' to exit'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a66c98a46d779747a78f5a3aafb406e, type: 2}
   m_sharedMaterial: {fileID: 1979153991233205315, guid: 5a66c98a46d779747a78f5a3aafb406e, type: 2}
@@ -772,7 +774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -88.439995, y: 11.365387}
+  m_AnchoredPosition: {x: -88.439995, y: 25.9}
   m_SizeDelta: {x: 538, y: 18.417908}
   m_Pivot: {x: 0.33747998, y: 0.5}
 --- !u!1 &471630961
